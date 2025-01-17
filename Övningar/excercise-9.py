@@ -111,30 +111,4 @@ for predictor in selected_predictors:
         plt.legend()
         plt.show()
 
-# Uppgift 7: Undersök relationen av mpg mot andra kvantitativa prediktorer
 
-# Välj specifika kvantitativa prediktorer
-selected_predictors = ["cylinders", "horsepower", "acceleration", "mpg"]
-
-# Skapa scatterplots för att analysera relationen mellan mpg och andra kvantitativa prediktorer
-for predictor in selected_predictors:
-    if predictor != "mpg":  # Undvik att plotta mpg mot sig själv
-        plt.figure(figsize=(8, 4))
-        # Skapa scatter plot med regressionslinje
-        sns.regplot(x=df[predictor], y=df["mpg"], scatter=True, 
-                   scatter_kws={'alpha':0.5},
-                   line_kws={'color': 'red', 'label': 'Trendlinje'})
-        
-        # Beräkna medelvärde och standardavvikelse
-        medelvärde = df.groupby(predictor)["mpg"].mean().reset_index()
-        std_avvikelse = df.groupby(predictor)["mpg"].std().reset_index()
-        
-        # Rita linjer för standardavvikelse
-        plt.plot(medelvärde[predictor], medelvärde["mpg"] + std_avvikelse["mpg"], color="blue", linestyle="--", label="Medelvärde + 1 STD")
-        plt.plot(medelvärde[predictor], medelvärde["mpg"] - std_avvikelse["mpg"], color="green", linestyle="--", label="Medelvärde - 1 STD")
-        
-        plt.title(f"Relation mellan {predictor} och mpg")
-        plt.xlabel(predictor)
-        plt.ylabel("mpg")
-        plt.legend()
-        plt.show()
