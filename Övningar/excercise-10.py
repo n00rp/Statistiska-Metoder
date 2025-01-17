@@ -71,3 +71,5 @@ more_than_eight_rooms = len(Boston[Boston['rm'] > 8])
 print(f"Antal förorter med mer än sju rum: {more_than_seven_rooms}")
 print(f"Antal förorter med mer än åtta rum: {more_than_eight_rooms}")
 # Kommentar: Det finns en betydande mängd förorter som har mer än sju rum, men endast ett fåtal som har mer än åtta rum.
+
+#Test
