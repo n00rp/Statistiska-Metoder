@@ -132,3 +132,4 @@ for predictor in selected_predictors:
         plt.plot(medelvärde[predictor], medelvärde["mpg"] - std_avvikelse["mpg"], color="green", linestyle="--", label="Medelvärde - 1 STD")
         plt.legend()
         plt.show()
+
