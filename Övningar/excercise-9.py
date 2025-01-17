@@ -92,19 +92,22 @@ selected_predictors = ["cylinders", "horsepower", "acceleration", "mpg"]
 for predictor in selected_predictors:
     if predictor != "mpg":  # Undvik att plotta mpg mot sig själv
         plt.figure(figsize=(8, 4))
-        sns.scatterplot(x=df[predictor], y=df["mpg"])
-        plt.title(f"Relation mellan {predictor} och mpg")
-        plt.xlabel(predictor)
-        plt.ylabel("mpg")
+        # Skapa scatter plot med regressionslinje
+        sns.regplot(x=df[predictor], y=df["mpg"], scatter=True, 
+                   scatter_kws={'alpha':0.5},
+                   line_kws={'color': 'red', 'label': 'Trendlinje'})
         
         # Beräkna medelvärde och standardavvikelse
         medelvärde = df.groupby(predictor)["mpg"].mean().reset_index()
         std_avvikelse = df.groupby(predictor)["mpg"].std().reset_index()
         
         # Rita linjer för standardavvikelse
-        plt.plot(medelvärde[predictor], medelvärde["mpg"], color="red", label="Medelvärde")
         plt.plot(medelvärde[predictor], medelvärde["mpg"] + std_avvikelse["mpg"], color="blue", linestyle="--", label="Medelvärde + 1 STD")
         plt.plot(medelvärde[predictor], medelvärde["mpg"] - std_avvikelse["mpg"], color="green", linestyle="--", label="Medelvärde - 1 STD")
+        
+        plt.title(f"Relation mellan {predictor} och mpg")
+        plt.xlabel(predictor)
+        plt.ylabel("mpg")
         plt.legend()
         plt.show()
 
@@ -117,19 +120,21 @@ selected_predictors = ["cylinders", "horsepower", "acceleration", "mpg"]
 for predictor in selected_predictors:
     if predictor != "mpg":  # Undvik att plotta mpg mot sig själv
         plt.figure(figsize=(8, 4))
-        sns.scatterplot(x=df[predictor], y=df["mpg"])
-        plt.title(f"Relation mellan {predictor} och mpg")
-        plt.xlabel(predictor)
-        plt.ylabel("mpg")
+        # Skapa scatter plot med regressionslinje
+        sns.regplot(x=df[predictor], y=df["mpg"], scatter=True, 
+                   scatter_kws={'alpha':0.5},
+                   line_kws={'color': 'red', 'label': 'Trendlinje'})
         
         # Beräkna medelvärde och standardavvikelse
         medelvärde = df.groupby(predictor)["mpg"].mean().reset_index()
         std_avvikelse = df.groupby(predictor)["mpg"].std().reset_index()
         
         # Rita linjer för standardavvikelse
-        plt.plot(medelvärde[predictor], medelvärde["mpg"], color="red", label="Medelvärde")
         plt.plot(medelvärde[predictor], medelvärde["mpg"] + std_avvikelse["mpg"], color="blue", linestyle="--", label="Medelvärde + 1 STD")
         plt.plot(medelvärde[predictor], medelvärde["mpg"] - std_avvikelse["mpg"], color="green", linestyle="--", label="Medelvärde - 1 STD")
+        
+        plt.title(f"Relation mellan {predictor} och mpg")
+        plt.xlabel(predictor)
+        plt.ylabel("mpg")
         plt.legend()
         plt.show()
-
