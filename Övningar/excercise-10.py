@@ -1,3 +1,4 @@
+
 from ISLP import load_data
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -16,7 +17,7 @@ Boston = load_data("Boston")
 
 #Räkna upp antal rader och kolumner
 num_rows, num_columns = Boston.shape
-print(f"Antal rader: {num_rows}, Antal kolumner: {num_columns}")
+print(f"Antal rader: {num_rows},\nAntal kolumner: {num_columns}")
 
 
 #Uppgift C)
