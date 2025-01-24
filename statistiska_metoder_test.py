@@ -47,9 +47,9 @@ class LinearRegression:
         return X_b @ self.beta
 
 # Demonstration av LinearRegression-klassen
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Läs in data från CSV med numpy
-    data = np.loadtxt('C:/Programering/It högskolan/Statistiska-Metoder/Data/Small-diameter-flow.csv', delimiter=',', skiprows=1)  # Anta att första raden är header
+    data = np.loadtxt("C:/Programing/Private Projects/Statistiska-Metoder/Data/Small-diameter-flow.csv", delimiter=",", skiprows=1)  # Anta att första raden är header
     # Anta att den sista kolumnen är målvariabeln och resten är funktioner
     X = data[:, :-1]  # Funktioner
     y = data[:, -1]   # Målvariabel
@@ -59,14 +59,14 @@ if __name__ == '__main__':
     model.fit()
 
     # Skriv ut antalet prover n
-    print('Antal prover n:', model.n)
+    print("Antal prover n:", model.n)
     # Skriv ut koefficienterna b
-    print('Koefficienter b:', model.beta)
+    print("Koefficienter b:", model.beta)
     # Skriv ut variansen
-    print('Varians:', model.variance())
+    print("Varians:", model.variance())
     # Skriv ut standardavvikelsen
-    print('Standardavvikelse:', model.standard_deviation())
+    print("Standardavvikelse:", model.standard_deviation())
     # Skriv ut signifikans
-    print('P-värden:', model.significance())
+    print("P-värden:", model.significance())
     # Skriv ut R²
-    print('R²-värde:', model.r_squared())
+    print("R²-värde:", model.r_squared())
