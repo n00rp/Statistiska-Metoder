@@ -24,13 +24,9 @@ class LinearRegression:
         # Calculate standard deviation of residuals
         return np.sqrt(self.variance())
 
-    def predict(self, X):
-        # Predict using the linear model
-        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term
-        return X_b @ self.beta
-
     def significance(self):
         # Report significance of the regression
+        X_b = np.c_[np.ones((self.n, 1)), self.X]  # Add bias term
         predictions = self.predict(self.X)
         residuals = self.y - predictions
         mse = self.variance()
@@ -44,3 +40,33 @@ class LinearRegression:
         ss_total = np.sum((self.y - np.mean(self.y)) ** 2)
         ss_residual = np.sum((self.y - self.predict(self.X)) ** 2)
         return 1 - (ss_residual / ss_total)
+
+    def predict(self, X):
+        # Predict using the linear model
+        X_b = np.c_[np.ones((X.shape[0], 1)), X]  # Add bias term
+        return X_b @ self.beta
+
+# Demonstration av LinearRegression-klassen
+if __name__ == '__main__':
+    # Läs in data från CSV med numpy
+    data = np.loadtxt('C:/Programering/It högskolan/Statistiska-Metoder/Data/Small-diameter-flow.csv', delimiter=',', skiprows=1)  # Anta att första raden är header
+    # Anta att den sista kolumnen är målvariabeln och resten är funktioner
+    X = data[:, :-1]  # Funktioner
+    y = data[:, -1]   # Målvariabel
+
+    # Skapa en instans av LinearRegression
+    model = LinearRegression(X, y)
+    model.fit()
+
+    # Skriv ut antalet prover n
+    print('Antal prover n:', model.n)
+    # Skriv ut koefficienterna b
+    print('Koefficienter b:', model.beta)
+    # Skriv ut variansen
+    print('Varians:', model.variance())
+    # Skriv ut standardavvikelsen
+    print('Standardavvikelse:', model.standard_deviation())
+    # Skriv ut signifikans
+    print('P-värden:', model.significance())
+    # Skriv ut R²
+    print('R²-värde:', model.r_squared())
