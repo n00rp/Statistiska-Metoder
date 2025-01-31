@@ -14,12 +14,12 @@ class LinjärRegression:
     @property
     def d(self):
         # Antal funktioner
-        return len(self.koefficienter)-1
+        return len(self.b)-1
 
     @property
-    def koefficienter(self):
-        # Beräkna koefficienterna med pinv för bättre numerisk stabilitet
-        return np.linalg.pinv(self.x.T @ self.x) @ self.x.T @ self.y
+    def b(self):
+        # Beräkna b med pinv för bättre stabilitet
+        return np.linalg.pinv(self.x.T @ self.x) @ self.x.T @ self.y #Transponerad matris T
 
     def SSE(self):
         # Sum of Squared Errors (Residual sum of squares)
@@ -54,4 +54,4 @@ class LinjärRegression:
 
     def prediktera(self, x):
         # Prediktera med hjälp av den linjära modellen
-        return x @ self.koefficienter
+        return x @ self.b
